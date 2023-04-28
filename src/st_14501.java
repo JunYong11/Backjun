@@ -1,32 +1,33 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 public class st_14501 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();	//일할수 있는 일수 입력
-		int arr[][] = new int[2][N];
 		
-		int num = N-1;
-		for(int i =0;i<N;i++) {
-			arr[0][N] = sc.nextInt();	//걸리는 일수 입력
-			arr[1][N] = sc.nextInt();	//금액 입력
-		}
-		int week = 0;
-		int money = 0;
-		int result = 0;
-		int sum_week = 0;
-		int sum_money = 0;
-		for(int i = 0;i<N;i++) {
-			week = arr[0][i];
-			money = arr[1][i];
-			sum_week += week;
-			sum_money += money;
+		int day = sc.nextInt();	//입력받은 일수
+		
+		int [] time = new int[day];		//걸리는 시
+		int [] money = new int[day];	//받는돈
+		
+		int [] result = new int[day];	//결과값 저장
+		
+		for(int i = 0;i<day;i++) {
+			time[i] = sc.nextInt();
+			money[i] = sc.nextInt();
 			
-			for(int j = 0;j<N;j++) {
-				
-			}
 			
 		}
+		
+		for(int i = 0;i<day;i++) {
+			if(i+time[i] <=day) {
+				result[i+time[i]] = Math.max(result[i+time[i]], result[i]+money[i]);			
+				}
+			
+			
+		}
+		
+		
 	}
 
 }
