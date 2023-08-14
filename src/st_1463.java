@@ -20,6 +20,7 @@ public class st_1463 {
 			if(i % 3 == 0) {
 				dp[i] = Math.min(dp[i], dp[i / 3] + 1);
 			}
+			dp[i] += 1;
 		}
 		
 		System.out.println(dp[x]);
