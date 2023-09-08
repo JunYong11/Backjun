@@ -3,43 +3,72 @@ import java.util.Stack;
 public class st_10828 {
 	static int n = 0;
 	static String m;
-	static int temp = 0;
-
+	static int [] arr;
+	static int count = 0;
 	public static void main(String[] args) {	
-		Stack<Integer> sk = new Stack<>();
 		Scanner sc = new Scanner(System.in);
 		
 		int num = sc.nextInt();
+		arr = new int[num];
 		
-		for(int i=0;i<num;i++) {
+		for(int i = 0;i<num;i++) {
+			
 			m = sc.next();
-			switch(m){
+			
+			switch(m) {
+			
 			case "push":
 				n = sc.nextInt();
-				sk.push(n);
+				push(n);
 				break;
 			case "pop":
-				//temp = sk.pop();
-				System.out.println(sk.pop());
-				break;
-			case "size":
-				temp = sk.size();
-				System.out.println(temp);
-				break;
-			case "empty":
-				boolean temp1 = sk.empty();
-				if(temp1 = true) {
-					System.out.println(1);
-				}
-				else {
-					System.out.println(0);
-				}
+				pop();
 				break;
 			case "top":
-				temp = sk.peek();
-				System.out.println(temp);
+				top();
+				break;
+			case "empty":
+				empty();
+				break;
+			case "size":
+				size();
 				break;
 			}
 		}
+	}
+	
+	static void push(int n) {
+		arr[count] = n;
+		count++;
+	}
+	static void pop() {
+		if(count == 0) {
+			System.out.println(-1);
+		}
+		else {
+			count--;
+			System.out.println(arr[count]);
+			arr[count] = 0;
+		}
+	}
+	static void top() {
+		if(count == 0) {
+			System.out.println(-1);
+		}
+		else {
+			System.out.println(arr[count-1]);
+		}
+		
+	}
+	static void empty() {
+		if(count == 0) {
+			System.out.println(1);
+		}
+		else {
+			System.out.println(0);
+		}
+	}
+	static void size() {
+		System.out.println(count);
 	}
 }
