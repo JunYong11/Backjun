@@ -1,74 +1,75 @@
-import java.util.Scanner;
-import java.util.Stack;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 public class st_10828 {
 	static int n = 0;
 	static String m;
 	static int [] arr;
 	static int count = 0;
-	public static void main(String[] args) {	
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) throws IOException {	
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		
-		int num = sc.nextInt();
+		int num = Integer.parseInt(br.readLine());
 		arr = new int[num];
 		
 		for(int i = 0;i<num;i++) {
-			
-			m = sc.next();
-			
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			String m = st.nextToken();
 			switch(m) {
 			
 			case "push":
-				n = sc.nextInt();
-				push(n);
+				push(Integer.parseInt(st.nextToken()));
 				break;
 			case "pop":
-				pop();
+				sb.append(pop()).append("\n");
 				break;
 			case "top":
-				top();
+				sb.append(top()).append("\n");
 				break;
 			case "empty":
-				empty();
+				sb.append(empty()).append("\n");
 				break;
 			case "size":
-				size();
+				sb.append(size()).append("\n");
 				break;
 			}
 		}
+		System.out.println(sb);
 	}
 	
 	static void push(int n) {
 		arr[count] = n;
 		count++;
 	}
-	static void pop() {
+	static int pop() {
 		if(count == 0) {
-			System.out.println(-1);
+			return -1;
 		}
 		else {
-			count--;
-			System.out.println(arr[count]);
-			arr[count] = 0;
+			int temp = arr[count - 1];
+			count --;
+			return temp;
 		}
 	}
-	static void top() {
+	static int top() {
 		if(count == 0) {
-			System.out.println(-1);
+			return -1;
 		}
 		else {
-			System.out.println(arr[count-1]);
+			return arr[count - 1];
 		}
-		
 	}
-	static void empty() {
+	static int empty() {
 		if(count == 0) {
-			System.out.println(1);
+			return 1;
 		}
 		else {
-			System.out.println(0);
+			return 0;
 		}
 	}
-	static void size() {
-		System.out.println(count);
+	static int size() {
+		return count;
 	}
 }
