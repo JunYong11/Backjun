@@ -1,38 +1,49 @@
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 public class st_2606 {
-
+	
+	static int node;
+	static int line;
+	static boolean visit[];
+	static int arr[][];
+	static int result = 0;
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		StringTokenizer st;
 		
-		int N = Integer.parseInt(br.readLine());
-		int S = Integer.parseInt(br.readLine());
-		int [][] com = new int[N][2];
-		int [][] result = new int[N][2];
+		node = Integer.parseInt(br.readLine());
+		line = Integer.parseInt(br.readLine());
 		
-		for(int i = 0 ; i<S;i++) {
-			com[i][0] = Integer.parseInt(br.readLine());
-			com[i][1] = Integer.parseInt(br.readLine());
-		}
+		visit = new boolean[node+1];
+		arr = new int[node+1][node+1];
 		
-		result[0][0] = com[0][0];
-		result[0][1] = com[0][1];
-		
-		for(int i = 1;i<N;i++) {
-			if(result[i-1][0] == com[i][0] || result[i-1][0] == com[i][1] || result[i-1][1] == com[i][0] || result[i-1][1] == com[i][1]) {
-				result[i][0] = com[i][0];
-				result[i][1] = com[i][1];
-			}
-			else continue;
-		}
-		int count = 0;
-		for(int i = 0;i<N;i++) {
-			System.out.print(result[i][0]+" ");
-			System.out.println(result[i][1]);
+		for(int i = 0;i<line;i++) {
+			st = new StringTokenizer(br.readLine());
+			int x = Integer.parseInt(st.nextToken());
+			int y = Integer.parseInt(st.nextToken());
 			
+			arr[x][y] = 1;
+			arr[y][x] = 1;
+		}
+
+		DFS(1);
+		
+		System.out.println(result);
+		
+	}
+	
+	static void DFS(int N) {
+		visit[N] = true;
+
+		for(int i=1; i<node+1; i++) {
+
+			if(arr[N][i] == 1 && visit[i] == false) {
+				DFS(i);
+				result++;
+			}
 		}
 	}
 }
