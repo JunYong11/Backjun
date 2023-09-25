@@ -13,7 +13,7 @@ public class st_2606 {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		StringTokenizer st;
-		
+		 
 		node = Integer.parseInt(br.readLine());
 		line = Integer.parseInt(br.readLine());
 		
