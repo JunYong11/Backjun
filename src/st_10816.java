@@ -1,47 +1,67 @@
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.Arrays;
+import java.util.Scanner;
 public class st_10816 {
-	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 	static int N = 0;
 	static int M = 0;
 	static int Narr[];
-	static int Marr[];
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		N = Integer.parseInt(br.readLine());
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
 		Narr = new int[N];
-		String input =br.readLine();
-		String[] numbersAsString = input.split("\\s+");
 		for(int i = 0;i<N;i++) {
-			Narr[i] = Integer.parseInt(numbersAsString[i]);
+			Narr[i] = sc.nextInt();
 		}
-		M = Integer.parseInt(br.readLine());
-		Marr = new int[M];
-		input = br.readLine();
-		numbersAsString = input.split("\\s+");
-		for(int i = 0;i<M;i++) {
-			Marr[i] = Integer.parseInt(numbersAsString[i]);
+		Arrays.sort(Narr);
+
+		M = sc.nextInt();
+	
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i=0;i<M;i++) {
+			int key = sc.nextInt();
+			sb.append(upperBound(Narr, key) - lowerBound(Narr, key)).append(' ');
 		}
-		resultData();
+		System.out.println(sb);
 	}
 	
-	static void resultData() throws IOException {
-		int count[] = new int[M];
-		for(int i = 0;i<M;i++) {
-			for(int j = 0;j<N;j++) {
-				if(Marr[i] == Narr[j]) {
-					count[i] ++;
-				}
+	public static int lowerBound(int[] arr,int key) {
+		int low = 0;
+		int hight = arr.length;
+		
+		while(low<hight) {
+			int mid = (low+hight) / 2;
+			
+			if(key <= arr[mid]) {
+				hight = mid;
+			}
+			
+			else {
+				low = mid+1;
 			}
 		}
-		for(int i = 0;i<M;i++) {
-			bw.write(String.valueOf(count[i]));
-			bw.write(" ");
-		}
-		bw.flush();
-		bw.close();
+		return low;
 	}
+	
+	public static int upperBound(int[] arr, int key) {
+		int low = 0;
+		int hight = arr.length;
+		
+		while(low < hight) {
+			int mid = (low+hight) / 2;
+			
+			if(key < arr[mid]) {
+				hight = mid;
+			}
+			
+			else {
+				low = mid+1;
+			}
+		}
+		return low;
+	}
+
 }
