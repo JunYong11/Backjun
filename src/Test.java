@@ -7,13 +7,7 @@ public class Test {
 		Scanner sc = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		int a = Integer.parseInt(st.nextToken());
-		
-		System.out.println(a);
-
-		int b = Integer.parseInt(st.nextToken());
-		System.out.println(b);
+		System.out.print("Hello world");
 	}
 }
 
